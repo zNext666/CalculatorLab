@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
-    static class Program
+    static class rogram
     {
         /// <summary>
         /// The main entry point for the application.
