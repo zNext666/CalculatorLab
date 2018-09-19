@@ -25,26 +25,35 @@ namespace CPE200Lab1
                 }
                 else if (isOperator(s))
                 {
-                    if (rpnStack.Count > 1)
+                    if (s == "1/x" || s == "√")
                     {
                         firstOperator = (rpnStack.Pop()).ToString();
-                        secondOperator = (rpnStack.Pop()).ToString();
+                        rpnStack.Push(unaryCalculate(s, firstOperator.ToString()));
                     }
                     else
                     {
-                        return "E";
+                        if (rpnStack.Count >= 2)
+                        {
+                            firstOperator = (rpnStack.Pop()).ToString();
+                            secondOperator = (rpnStack.Pop()).ToString();
+                        }
+                        else
+                        {
+                            return "E";
+                        }
+
+
+
+                        if (s == "-" || s == "÷")
+                        {
+                            temp = firstOperator;
+                            firstOperator = secondOperator;
+                            secondOperator = temp;
+                        }
+
+                        rpnStack.Push(calculate(s, firstOperator, secondOperator));
+
                     }
-
-
-
-                    if (s == "-" || s == "÷")
-                    {
-                        temp = firstOperator;
-                        firstOperator = secondOperator;
-                        secondOperator = temp;
-                    }
-
-                    rpnStack.Push(calculate(s, firstOperator, secondOperator));
 
                 }
                 /*

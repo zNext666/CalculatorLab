@@ -22,6 +22,9 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
+                case "√":
+                case "1/x":
+                case "%":
                     return true;
             }
             return false;
@@ -127,6 +130,54 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     //your code here
+
+                    if (secondOperand != "0")
+                    {
+                        double result;
+                        string[] parts;
+                        int remainLength;
+                        result = (Convert.ToDouble(secondOperand) /100) * (Convert.ToDouble(firstOperand));
+                        parts = result.ToString().Split('.');
+                        if(parts[0].Length > maxOutputSize)
+                        {
+                            return "E";
+                        }
+                        remainLength = maxOutputSize - parts[0].Length - 1;
+                        return Convert.ToDouble(result.ToString("N" + remainLength)).ToString("G29");
+                    }
+                    break;
+                case "1/x":
+                    if (secondOperand != "0")
+                    {
+                        double result;
+                        string[] parts;
+                        int remainLength;
+                        result = 1 / (Convert.ToDouble(firstOperand));
+                        parts = result.ToString().Split('.');
+                        if (parts[0].Length > maxOutputSize)
+                        {
+                            return "E";
+                        }
+                        remainLength = maxOutputSize - parts[0].Length - 1;
+                        return Convert.ToDouble(result.ToString("N" + remainLength)).ToString("G29");
+                    }
+                    break;
+
+                case "√":
+                    if (secondOperand != "0")
+                    {
+                        double result;
+                        string[] parts;
+                        int remainLength;
+                        result = Math.Sqrt(Convert.ToDouble(firstOperand));
+                        parts = result.ToString().Split('.');
+                        if (parts[0].Length > maxOutputSize)
+                        {
+                            return "E";
+                        }
+                        remainLength = maxOutputSize - parts[0].Length - 1;
+                        return Convert.ToDouble(result.ToString("N" + remainLength)).ToString("G29");
+                    }
                     break;
             }
             return "E";
