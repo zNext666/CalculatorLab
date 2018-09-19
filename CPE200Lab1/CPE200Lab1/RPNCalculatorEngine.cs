@@ -65,7 +65,7 @@ namespace CPE200Lab1
             if (rpnStack.Count == 1)
             {
                 //return (string)rpnStack.Peek();
-                return Convert.ToDecimal(rpnStack.Peek()).ToString("G29");
+                return Convert.ToDouble(rpnStack.Peek()).ToString("G29");
             }
             else
             {

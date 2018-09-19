@@ -83,7 +83,8 @@ namespace CPE200Lab1
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
                         //return result.ToString("N" + remainLength);
-                        return result.ToString("G29");
+                        //return result.ToString("G29");
+                        return Convert.ToDouble(result.ToString("N" + remainLength)).ToString("G29");
                     }
                     break;
             }
@@ -120,7 +121,8 @@ namespace CPE200Lab1
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
                         //return result.ToString("N" + remainLength);
-                        return result.ToString("G29");
+                        //return result.ToString("G29");
+                        return Convert.ToDouble(result.ToString("N" + remainLength)).ToString("G29");
                     }
                     break;
                 case "%":
