@@ -19,7 +19,7 @@ namespace CPE200Lab1
         private string firstOperand;
         private string operate;
         private double memory;
-        private CalculatorEngine engine;
+        private SimpleCalculatorEngine engine;
 
         private void resetAll()
         {
@@ -29,6 +29,9 @@ namespace CPE200Lab1
             isAfterOperater = false;
             isAfterEqual = false;
             firstOperand = null;
+            engine.setFirstOperand(null);
+            engine.setSecondOperand(null);
+            engine.setunaryOperand(null);
         }
 
 
@@ -37,7 +40,7 @@ namespace CPE200Lab1
         {
             InitializeComponent();
             memory = 0;
-            engine = new CalculatorEngine();
+            engine = new SimpleCalculatorEngine();
             resetAll();
         }
 
@@ -80,8 +83,10 @@ namespace CPE200Lab1
                 return;
             }
             operate = ((Button)sender).Text;
-            firstOperand = lblDisplay.Text;
-            string result = engine.unaryCalculate(operate, firstOperand);
+            //firstOperand = lblDisplay.Text;
+            engine.setunaryOperand(lblDisplay.Text);
+            string result = engine.unaryCalculate(operate);
+            //string result = engine.calculate(operate);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -104,9 +109,11 @@ namespace CPE200Lab1
                 return;
             }
             if (firstOperand != null)
+            //if (!engine.isEmptyfirstOperand())
             {
-                string secondOperand = lblDisplay.Text;
-                string result = engine.calculate(operate, firstOperand, secondOperand);
+                //string secondOperand = lblDisplay.Text;
+                engine.setSecondOperand(lblDisplay.Text);
+                string result = engine.calculate(operate);
                 if (result is "E" || result.Length > 8)
                 {
                     lblDisplay.Text = "Error";
@@ -124,6 +131,7 @@ namespace CPE200Lab1
                 case "X":
                 case "÷":
                     firstOperand = lblDisplay.Text;
+                    engine.setFirstOperand(lblDisplay.Text);
                     isAfterOperater = true;
                     break;
                 case "%":
@@ -139,8 +147,10 @@ namespace CPE200Lab1
             {
                 return;
             }
-            string secondOperand = lblDisplay.Text;
-            string result = engine.calculate(operate, firstOperand, secondOperand);
+            //string secondOperand = lblDisplay.Text;
+            engine.setSecondOperand(lblDisplay.Text);
+            //string result = engine.calculate(operate, firstOperand, secondOperand);
+            string result = engine.calculate(operate);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
