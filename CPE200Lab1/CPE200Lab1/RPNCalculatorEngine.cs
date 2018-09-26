@@ -36,12 +36,21 @@ namespace CPE200Lab1
                 else if (isOperator(token))
                 {
                     //FIXME, what if there is only one left in stack?
-                    if (rpnStack.Count <= 1)
+                    
+                    //if (rpnStack.Count <= 1)
+                    //{
+                    //    return "E";
+                    //}
+                    try
                     {
-                        return "E";
-                    }
                     secondOperand = rpnStack.Pop();
                     firstOperand = rpnStack.Pop();
+                    }catch(Exception ex)
+                    {
+                        Console.WriteLine(ex);
+                        return "E";
+                    }
+
 
                     result = calculate(token, firstOperand, secondOperand, 8);
                     if (result is "E")
